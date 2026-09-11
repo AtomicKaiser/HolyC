@@ -1,6 +1,7 @@
 # HolyC Programming Language
 > [!WARNING]
-> The Compiler is in a working state and most features are implemented. Errors are a bit hit and miss! This is more for fun than for serious software development.
+
+> The Compiler is in a working state. WORKING is doing ALOT of heavy lifting. Please do not take this as an actual prod level project it is for FUN and to learn.
 
 <p align="center">
   <img 
@@ -12,6 +13,8 @@
 
 A compiler for [Terry A. Davis](https://en.wikipedia.org/wiki/Terry_A._Davis)'s HolyC programming language, implemented in C.
 
+> "An idiot admires complexity, a genius admires simplicity" ( credit to @4i8 for giving me the idea to add this quote ) 
+
 ```hc
 U0 Main()
 {
@@ -20,7 +23,7 @@ U0 Main()
 Main;
 ```
 
-Full documentation for the language and this compiler can be found here: 
+( please take note this is meant for the original tree not my personal fork ) Full documentation for the language and this compiler can be found here: 
 https://holyc-lang.com/
 
 # What's here?
@@ -280,7 +283,7 @@ however can handle most cases, including assembly. Comments are not preserved
 and some if conditions will require brackets to work correctly
 
 ## Bugs
-Please open an issue on [github](https://github.com/Jamesbarford/holyc-lang/issues)
+Please open an issue.
 
 ## Inspirations & Resources:
 A lot of the assembly has been cobbled together by running `gcc -S -O0 <file>`
@@ -294,6 +297,3 @@ and resources that I have found particularly useful for learning.
 - [shecc](https://github.com/sysprog21/shecc/tree/master)
 - [JS c compiler](https://github.com/Captainarash/CaptCC)
 - [linenoise](https://github.com/antirez/linenoise)
-
-### Want to ask questions?
-Find me on twitch: https://www.twitch.tv/Jamesbarford
