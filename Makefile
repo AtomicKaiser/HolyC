@@ -35,6 +35,12 @@ install:
 release-unit-test:
 	$(MAKE) -C ./build unit-test
 
+test:
+	mkdir -p ./build/test-prefix/include ./build/test-prefix/lib
+	cp ./src/holyc-lib/tos.HH ./build/test-prefix/include/tos.HH
+	cd ./src/holyc-lib && ../../hcc -lib tos --install-dir=$(CURDIR)/build/test-prefix ./all.HC
+	cd ./src/tests && ../../hcc --install-dir=$(CURDIR)/build/test-prefix ./run.HC -o test-runner && ./test-runner --install-dir=$(CURDIR)/build/test-prefix && cd ../../
+
 unit-test:
 	cd ./src/tests && ../../hcc ./run.HC -o test-runner && ./test-runner && cd ../../
 

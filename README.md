@@ -115,6 +115,13 @@ make && make install && make unit-test
 make && sudo make install && make unit-test
 ```
 
+### Testing
+Run the full test suite locally (no `sudo` required):
+```
+make test
+```
+This builds `libtos` into a local prefix and runs all 90 tests. Currently **87/90 pass** — the 3 failures are pre-existing issues with tests that shell out to `hcc` internally.
+
 ### CMake - Not so simple
 **Create the Makefiles in ./build**
 ```

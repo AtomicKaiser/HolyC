@@ -10,8 +10,17 @@ U0 RunTest(U8 *filename)
    * hcc happens to be on PATH (e.g. an installed /usr/local/bin/hcc
    * from a prior version - this trap cost us a session of confused
    * cross-test triage). */
+  U8 install_flag[512];
+  install_flag[0] = '\0';
+  if (g_install_dir[0] != '\0') {
+    len = snprintf(install_flag, sizeof(install_flag),
+                   " --install-dir=%s", g_install_dir);
+    install_flag[len] = '\0';
+  }
+
   if (g_target[0] == '\0') {
-    len = snprintf(buffer, sizeof(buffer), "../../hcc %s", filename);
+    len = snprintf(buffer, sizeof(buffer), "../../hcc%s %s",
+                   install_flag, filename);
   } else {
     len = snprintf(buffer, sizeof(buffer),
                    "../../hcc --target=%s --install-dir=../../build/%s %s",
@@ -42,10 +51,15 @@ I32 Main(I32 argc, U8 **argv)
    * Disambiguation is by the --target= prefix so the existing
    * single-file workflow keeps working unchanged. */
   g_target = "";
+  g_install_dir = "";
   I64 arg_idx = 1;
-  if (argc >= 2 && StrNCmp(argv[1], "--target=", 9) == 0) {
-    g_target = argv[1] + 9;
-    arg_idx = 2;
+  while (arg_idx < argc && StrNCmp(argv[arg_idx], "--", 2) == 0) {
+    if (StrNCmp(argv[arg_idx], "--target=", 9) == 0) {
+      g_target = argv[arg_idx] + 9;
+    } else if (StrNCmp(argv[arg_idx], "--install-dir=", 14) == 0) {
+      g_install_dir = argv[arg_idx] + 14;
+    }
+    arg_idx++;
   }
 
   if (argc > arg_idx) {

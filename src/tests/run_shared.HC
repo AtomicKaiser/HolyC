@@ -72,6 +72,7 @@ Bool ShouldExclude(U8 *filename, I64 namelen)
  * dereference segfaults. Declare uninitialised and assign in Main
  * before any reader runs. */
 U8 *g_target;
+U8 *g_install_dir;
 
 PtrVec *CollectTests()
 {
